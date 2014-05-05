@@ -59,7 +59,7 @@
                 isLazy = (cImg.attr('data-lazy-load') == ('true'||'TRUE') || settings.lazy),
                 isResponsive = (settings.responsive || cImg.attr('data-lazy-responsive'));
     
-            if(!settings.accesskey){
+            if(!settings.accessKey){
                 console.log('Missing Accesskey');
                 return false;                
             }
