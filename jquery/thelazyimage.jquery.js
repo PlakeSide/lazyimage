@@ -51,13 +51,14 @@
             getWidth = function() {
                 return window.innerWidth;
                 };   
-        return this.filter("img").each(function(){
+        return this.each(function(){
             var cImg = $(this),
                 oImgUrl = cImg.attr('data-lazy-src'),
                 setSourceOnLoad = true,
                 defaultTran = (cImg.attr('data-lazy-transform') ? cImg.attr('data-lazy-transform') : settings.transform),
                 isLazy = (cImg.attr('data-lazy-load') == ('true'||'TRUE') || settings.lazy),
-                isResponsive = (settings.responsive || cImg.attr('data-lazy-responsive'));
+                isResponsive = (settings.responsive || cImg.attr('data-lazy-responsive')),
+                isImg = (cImg.prop("tagName") == 'IMG');
     
             if(!settings.accessKey){
                 console.log('Missing Accesskey');
@@ -71,7 +72,7 @@
             
             if(isLazy){
                 setSourceOnLoad = false;
-                cImg.attr('src',settings.placeHolder);
+                if(isImg) cImg.attr('src',settings.placeHolder);
                 $( window ).on("scroll.lazyImage", function(){
                     setTimeout(function(){
                         setSource();
@@ -82,7 +83,12 @@
             var setSource = function(){
                 if((isLazy && isScrolledIntoView(cImg)) || !isLazy){
                     $( window ).off("scroll.lazyImage");
-                    cImg.attr('src',lazyUrl(oImgUrl,setTransition()));
+                    if(isImg) {
+                        cImg.attr('src',lazyUrl(oImgUrl,setTransition()));    
+                    }
+                    else {
+                        cImg.css('background-image', "url('"+ lazyUrl(oImgUrl,setTransition()) +"')")
+                    }
                 }
             };
 
