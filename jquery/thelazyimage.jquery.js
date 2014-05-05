@@ -7,16 +7,16 @@
             lazy: false,
             responsive: false,
             responsiveTransformations: [{
-                    transform: 'icon',
+                    transform: 'small',
                     minWidth: 0
                 }, {
-                    transform: 'small',
+                    transform: 'medium',
                     minWidth: 768
                 }, {
-                    transform: 'medium',
+                    transform: 'large',
                     minWidth: 992
                 }, {
-                    transform: 'large',
+                    transform: 'lanscape',
                     minWidth: 1200
             }],
             placeholder : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC'
@@ -41,7 +41,6 @@
                     var cWidth = getWidth(),
                         returnVal = false;
                     for (var i = sizes.length-1; i >= 0; i--) {
-                        console.log(sizes[i])
                         if (parseInt(cWidth) >= parseInt(sizes[i].minWidth)) {
                             return sizes[i].transform;
                         }
@@ -54,7 +53,6 @@
                 return window.innerWidth;
                 };   
         return this.filter("img").each(function(){
-            // console.log(this);
             var cImg = $(this),
                 oImgUrl = cImg.attr('data-lazy-src'),
                 setSourceOnLoad = true,
@@ -72,7 +70,6 @@
                 cImg.attr('src',settings.placeHolder);
                 $( window ).on("scroll.lazyImage", function(){
                     setTimeout(function(){
-                        console.log('scrolling');
                         setSource();
                     });
                 });
@@ -87,7 +84,6 @@
 
             var setTransition = function(){
                 if(!isResponsive) return defaultTran;
-                // console.log('is resp')
                 return getResponsiveTransformation(settings.responsiveTransformations);
             };
             
