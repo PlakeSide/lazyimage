@@ -1,5 +1,5 @@
 (function ($){
-    $.fn.lazyimage = function(options){
+    $.fn.thelazyimage = function(options){
         var settings = $.extend({
             accessKey : 'SNeTGVotJGrywvPReIaR',
             lazyCDN : 'http://lzimg.com',
