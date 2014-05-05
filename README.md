@@ -1,4 +1,4 @@
 lazyimage
 =========
 
-Scripts for use with LazyImage.com
+Scripts for use with TheLazyImage.com
