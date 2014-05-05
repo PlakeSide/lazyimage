@@ -1,7 +1,6 @@
 (function ($){
     $.fn.thelazyimage = function(options){
         var settings = $.extend({
-            accessKey : 'SNeTGVotJGrywvPReIaR',
             lazyCDN : 'http://lzimg.com',
             transform: 'icon',
             lazy: false,
@@ -59,6 +58,11 @@
                 defaultTran = (cImg.attr('data-lazy-transform') ? cImg.attr('data-lazy-transform') : settings.transform),
                 isLazy = (cImg.attr('data-lazy-load') == ('true'||'TRUE') || settings.lazy),
                 isResponsive = (settings.responsive || cImg.attr('data-lazy-responsive'));
+    
+            if(!settings.accesskey){
+                console.log('Missing Accesskey');
+                return false;                
+            }
 
             if(!oImgUrl){
                 console.log('Image missing "data-lazy-src"');
